@@ -26,7 +26,6 @@ public class IsPalindromic {
             case 4://方法4：通过递归来实现
                 result = isPalindromeByRe(node);
                 break;
-
         }
         System.out.println("result:" + result);
     }
@@ -129,6 +128,14 @@ public class IsPalindromic {
         return check(head);
     }
 
+    private static boolean check(ListNode head) {
+        if (head == null) {
+            return true;
+        }
+        boolean res = check(head.next) && (temp.val == head.val);
+        temp = temp.next;
+        return res;
+    }
 
     private static ListNode initLinkedList(int[] array) {
         ListNode head = null, cur = null;
@@ -145,16 +152,6 @@ public class IsPalindromic {
         }
         return head;
     }
-
-    private static boolean check(ListNode head) {
-        if (head == null) {
-            return true;
-        }
-        boolean res = check(head.next) && (temp.val == head.val);
-        temp = temp.next;
-        return res;
-    }
-
     static class ListNode {
         public int val;
         public ListNode next;
