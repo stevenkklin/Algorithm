@@ -95,8 +95,9 @@ public class IsPalindromic {
      * @return
      */
     public static boolean isPalindromeByHalfStack(ListNode head) {
-        if (head == null)
+        if (head == null) {
             return true;
+        }
         ListNode temp = head;
         Stack<Integer> stack = new Stack();
         //链表的长度
@@ -111,8 +112,9 @@ public class IsPalindromic {
         len >>= 1;
         //然后再出栈
         while (len-- >= 0) {
-            if (head.val != stack.pop())
+            if (head.val != stack.pop()) {
                 return false;
+            }
             head = head.next;
         }
         return true;
@@ -145,8 +147,9 @@ public class IsPalindromic {
     }
 
     private static boolean check(ListNode head) {
-        if (head == null)
+        if (head == null) {
             return true;
+        }
         boolean res = check(head.next) && (temp.val == head.val);
         temp = temp.next;
         return res;
