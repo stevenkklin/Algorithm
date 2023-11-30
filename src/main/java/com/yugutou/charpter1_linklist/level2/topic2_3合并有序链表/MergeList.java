@@ -15,7 +15,7 @@ public class MergeList {
         ListNode nodeD = initLinkedList(e);
         System.out.println(middleNode(nodeD).val);
 
-        int testMethod = 2;
+        int testMethod = 3;
         switch (testMethod) {
             case 1://最直接的方法
                 d = mergeTwoLists2(nodeA, nodeB);
@@ -29,6 +29,12 @@ public class MergeList {
             case 4://测试K个链表合并
                 d = mergeKLists(array);
         }
+
+        while (d != null) {
+            System.out.print( d.val + "->");
+            d = d.next;
+        }
+
 
 
         System.out.println(toString(d));
@@ -163,10 +169,10 @@ public class MergeList {
             return l1;
         }
         if (l1.val < l2.val) {
-            l1.next = mergeTwoLists(l1.next, l2);
+            l1.next = mergeTwoListsByRe(l1.next, l2);
             return l1;
         } else {
-            l2.next = mergeTwoLists(l1, l2.next);
+            l2.next = mergeTwoListsByRe(l1, l2.next);
             return l2;
         }
     }

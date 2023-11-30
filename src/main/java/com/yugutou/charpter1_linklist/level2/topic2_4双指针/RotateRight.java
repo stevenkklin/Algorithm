@@ -1,5 +1,7 @@
 package com.yugutou.charpter1_linklist.level2.topic2_4双指针;
 
+import java.util.Stack;
+
 /**
  * Leetcode61.旋转数组
  */
@@ -8,8 +10,35 @@ public class RotateRight {
     public static void main(String[] args) {
         int[] a = {1, 2, 3, 4, 5};
         ListNode nodeA = initLinkedList(a);
-        ListNode node = rotateRight(nodeA, 2);
+        ListNode node = rotateRightByStack(nodeA, 2);
         System.out.println(toString(node));
+    }
+
+    public static ListNode rotateRightByStack(ListNode head, int k) {
+        // 判空
+        if (head == null) {
+            return null;
+        } else if (head.next == null) {
+            return head;
+        }
+        // 将所有节点压栈，根据k弹出固定个数的节点，头插到链表开头
+        Stack<ListNode> stack = new Stack<>();
+        ListNode cur = head;
+        while (cur != null) {
+            stack.push(cur);
+            cur = cur.next;
+        }
+        cur = head;
+        ListNode node;
+        // 弹出K个节点，头插到链表开头
+        while (k > 0) {
+            node = stack.pop();
+            node.next = cur;
+            cur = node;
+            k --;
+        }
+
+        return cur;
     }
 
     public static ListNode rotateRight(ListNode head, int k) {
